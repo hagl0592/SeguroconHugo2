@@ -102,7 +102,7 @@
   </section>
   <section id="calculadoras" class="section soft">
     <div class="container">
-      <div class="section-head"><span class="eyebrow">Calculadoras</span><h2 class="title-xl">Una proyección más cercana a tu producto real</h2><p class="body-lg">Esta calculadora usa la lógica comercial de tus planes en UDIS para estimar aportación y valor futuro al retiro.</p></div>
+      <div class="section-head"><span class="eyebrow">Calculadoras</span><h2 class="title-xl">Una proyección más cercana a tu producto real</h2></div>
       <div class="calculator" style="margin-bottom:24px;">
         <div class="calc-left dark">
           <div class="overline" style="color:rgba(255,255,255,.7)">Calculadora de retiro en UDIS</div>
@@ -111,7 +111,7 @@
           <label for="retiroEdad">Edad actual</label><input id="retiroEdad" type="number" value="32" min="18" max="60" />
           <label for="retiroSexo">Sexo</label><select id="retiroSexo"><option value="M">Hombre</option><option value="F">Mujer</option></select>
           <label for="retiroPlan">Plan</label><select id="retiroPlan"><option value="65">Pagar hasta los 65 años</option><option value="15">Pagar por 15 años</option><option value="10">Pagar por 10 años</option></select>
-          <div class="calc-note">La calculadora consulta la UDI oficial desde backend. Si el servicio no responde, usa un valor de respaldo de 8.80.</div>
+          <div class="calc-note">La calculadora intenta usar el valor oficial más reciente de la UDI si agregas tu token de Banxico. Mientras tanto usa un valor de respaldo editable en código.</div>
         </div>
         <div class="calc-right">
           <div class="stat-grid">
@@ -245,8 +245,8 @@ Sexo: ${sexo}`;
       "10": "Pago por 10 años"
     };
 
-    const BMX_TOKEN = "";
-    const UDI_FALLBACK = 8.80;
+    const BMX_TOKEN = "e680a779ac758b4ca44fce68bb1ee3bcb1795fea40e0dae79682c9869f3c3dfd";
+    const UDI_FALLBACK = 8.00;
     let udiHoyActual = UDI_FALLBACK;
 
     function interpolar(edad, tabla, plan) {
@@ -272,10 +272,17 @@ Sexo: ${sexo}`;
     }
 
     async function obtenerUDIHoy() {
+      if (!BMX_TOKEN) {
+        udiHoyActual = UDI_FALLBACK;
+        document.getElementById('udiHoyDisplay').textContent = `$${udiHoyActual.toFixed(2)}`;
+        return;
+      }
       try {
-        const response = await fetch('/api/udi', { cache: 'no-store' });
+        const url = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP68257/datos/oportuno?token=${BMX_TOKEN}`;
+        const response = await fetch(url);
         const data = await response.json();
-        const valor = Number(data?.udi);
+        const dato = data?.bmx?.series?.[0]?.datos?.[0]?.dato;
+        const valor = Number(String(dato).replace(/,/g, ''));
         if (Number.isFinite(valor) && valor > 0) {
           udiHoyActual = valor;
         } else {
