@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seguro con Hugo</title>
+  <meta name="description" content="Asesoría personalizada en Gastos Médicos Mayores, retiro, Vida Mujer, seguro educativo, autos, vivienda, mascotas y seguro de viajero." />
+  <style>
+    :root{--blue:#073B63;--orange:#F25C05;--white:#fff;--soft:#F6F8FB;--text:#0F172A;--muted:#475569;--border:#E2E8F0;--shadow:0 20px 50px rgba(15,23,42,.10);--radius:28px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--white)}
+    a{text-decoration:none;color:inherit}.container{width:min(1160px,calc(100% - 32px));margin:0 auto}.section{padding:84px 0}.soft{background:var(--soft)}.grid{display:grid;gap:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:18px;font-weight:700;border:1px solid transparent;cursor:pointer;transition:.2s ease}
+    .btn-primary{background:var(--orange);color:#fff}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(242,92,5,.22)}
+    .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.18)}.btn-secondary:hover{background:rgba(255,255,255,.08)}
+    .hero{background:linear-gradient(135deg,var(--blue),#0B5A93);color:#fff;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 30%);pointer-events:none}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0 10px;position:relative;z-index:2}
+    .brand{display:flex;align-items:center;gap:14px}.brand-box{width:70px;height:70px;border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+    .brand-box span{font-size:58px;line-height:1;font-weight:900;color:var(--orange)}.brand-title{font-size:24px;font-weight:900}.brand-sub{font-size:14px;color:rgba(255,255,255,.72)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding:46px 0 84px;position:relative;z-index:2}
+    h1{margin:0;font-size:clamp(40px,6vw,68px);line-height:.98;letter-spacing:-.04em}.lead{margin-top:22px;font-size:20px;line-height:1.65;color:rgba(255,255,255,.84);max-width:700px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}.hero-points{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .point{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.88)}.check{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(242,92,5,.18);color:var(--orange);font-size:13px;font-weight:900}
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.hero-card{padding:34px;background:rgba(255,255,255,.97)}
+    .hero-photo{border-radius:24px;background:linear-gradient(135deg, rgba(7,59,99,.08), rgba(242,92,5,.08));border:1px solid rgba(7,59,99,.08);min-height:280px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);padding:24px}
+    .hero-photo strong{display:block;color:var(--blue);font-size:22px;margin-bottom:8px}.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    .stat{padding:20px;border-radius:24px;border:1px solid var(--border);background:#fff;transition:transform .2s ease, box-shadow .2s ease}.stat:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(15,23,42,.08)}
+    .stat.soft-orange{background:linear-gradient(180deg, rgba(242,92,5,.10), rgba(242,92,5,.14));border-color:transparent}.stat.soft-blue{background:linear-gradient(180deg, rgba(7,59,99,.08), rgba(7,59,99,.12));border-color:transparent}
+    .stat small{display:block;font-size:13px;font-weight:700;letter-spacing:.02em}.stat strong{display:block;margin-top:8px;font-size:24px;line-height:1.28;letter-spacing:-.02em}
+    .section-head{max-width:820px;margin:0 auto 44px;text-align:center}.eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(242,92,5,.10);color:var(--orange);font-size:13px;font-weight:800;margin-bottom:16px}
+    .title-xl{margin:0;font-size:clamp(32px,4vw,48px);line-height:1.04;letter-spacing:-.03em}.body-lg{font-size:18px;line-height:1.7;color:var(--muted)}
+    .services{grid-template-columns:repeat(3,minmax(0,1fr))}.service-card{padding:28px;border:1px solid transparent;transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease}.service-card:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(15,23,42,.12);border-color:rgba(7,59,99,.08)}
+    .icon{width:50px;height:50px;border-radius:18px;display:inline-flex;align-items:center;justify-content:center;background:rgba(7,59,99,.08);color:var(--blue);font-size:22px;margin-bottom:18px}.service-card h3{margin:0;font-size:24px;letter-spacing:-.02em}.service-card p{margin:14px 0 0;color:var(--muted);line-height:1.7}
+    .calculator{display:grid;grid-template-columns:1fr 1fr;border-radius:34px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}.calc-left,.calc-right{padding:34px}.calc-left.dark{background:var(--blue);color:#fff}.calc-left h3,.calc-right h3{margin:0;font-size:38px;line-height:1.04;letter-spacing:-.03em}
+    .calc-note{font-size:12px;line-height:1.6;opacity:.86;margin-top:18px} label{display:block;font-size:14px;margin:16px 0 8px} input{width:100%;height:50px;border-radius:16px;border:1px solid var(--border);padding:0 16px;font-size:16px;outline:none} select{width:100%;height:50px;border-radius:16px;border:1px solid var(--border);padding:0 16px;font-size:16px;outline:none;background:#fff;color:var(--text);appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%, var(--blue) 50%),linear-gradient(135deg,var(--blue) 50%, transparent 50%);background-position:calc(100% - 22px) 22px, calc(100% - 16px) 22px;background-size:6px 6px, 6px 6px;background-repeat:no-repeat}.calc-left.dark input{background:#fff;color:var(--text);border-color:transparent}
+    .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{padding:22px;border-radius:24px;border:1px solid var(--border);background:#fff}.metric.soft-orange{background:rgba(242,92,5,.10);border-color:transparent}.metric.soft-blue{background:rgba(7,59,99,.08);border-color:transparent}
+    .metric small{display:block;color:var(--muted);font-size:14px;font-weight:600}.metric strong{display:block;margin-top:8px;font-size:32px;line-height:1.06;letter-spacing:-.03em}.highlight{margin-top:14px;border-radius:28px;padding:26px;background:linear-gradient(135deg,var(--blue),#0B5A93);color:#fff}.highlight strong{display:block;margin-top:8px;font-size:40px;line-height:1.02}
+    .box{margin-top:14px;border-radius:28px;padding:24px;border:1px solid var(--border);background:#fff}.box strong{display:block;margin-top:8px;font-size:32px;line-height:1.05}
+    .logos{grid-template-columns:repeat(5,minmax(0,1fr))}.logo-card{padding:24px;text-align:center;border:1px solid rgba(7,59,99,.05);transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease}.logo-card:hover{transform:translateY(-6px);box-shadow:0 24px 44px rgba(15,23,42,.12);border-color:rgba(7,59,99,.12)}.logo-badge{min-height:108px;border-radius:22px;border:1px solid rgba(7,59,99,.08);background:linear-gradient(180deg,#fff,#f8fafc);display:flex;align-items:center;justify-content:center;padding:18px;transition:background .22s ease, border-color .22s ease, box-shadow .22s ease}.logo-card:hover .logo-badge{background:linear-gradient(180deg,#ffffff,#f3f7fb);border-color:rgba(7,59,99,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}.logo-badge img{max-width:100%;max-height:64px;object-fit:contain;display:block;filter:grayscale(100%);opacity:.9;transition:filter .22s ease, opacity .22s ease, transform .22s ease}.logo-card:hover .logo-badge img{filter:grayscale(0%);opacity:1;transform:scale(1.04)}.logo-card h3{margin:18px 0 0;font-size:22px}.logo-card p{margin:12px 0 0;color:var(--muted);line-height:1.6}
+    .about{display:grid;grid-template-columns:1fr .95fr;gap:24px;align-items:stretch}.about-copy,.about-photo{padding:34px}.about-copy{background:linear-gradient(135deg, rgba(7,59,99,.06), rgba(242,92,5,.08));border:1px solid rgba(7,59,99,.08)}.about-photo{background:#fff;border:1px solid rgba(7,59,99,.08)}
+    .photo-placeholder{min-height:320px;border-radius:24px;border:1px dashed rgba(7,59,99,.18);background:linear-gradient(135deg, rgba(7,59,99,.04), rgba(242,92,5,.05));display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;color:var(--muted)}.photo-placeholder strong{display:block;color:var(--blue);font-size:22px;margin-bottom:8px}
+    .close-card{padding:48px;text-align:center;background:linear-gradient(135deg,var(--blue),#0B5A93);color:#fff}.close-card p{max-width:640px;margin:16px auto 0;color:rgba(255,255,255,.84);font-size:18px;line-height:1.7}
+    footer{padding:18px 0 40px;text-align:center;color:var(--muted);font-size:14px}.whatsapp-float{position:fixed;right:24px;bottom:24px;width:60px;height:60px;border-radius:999px;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 30px rgba(0,0,0,.22);z-index:999;transition:transform .2s ease}.whatsapp-float:hover{transform:scale(1.06)}
+    @media (max-width:1100px){.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media (max-width:980px){.hero-grid,.services,.calculator,.about{grid-template-columns:1fr}.hero-points,.hero-stats,.stat-grid{grid-template-columns:1fr}}
+    @media (max-width:720px){.nav{flex-direction:column;align-items:flex-start}.brand-title{font-size:20px}.section{padding:70px 0}.hero-actions{flex-direction:column;align-items:flex-start}.calc-left,.calc-right,.hero-card,.about-copy,.about-photo,.close-card{padding:26px}.logos{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-box"><span>h</span></div>
+          <div><div class="brand-title">Seguro con Hugo</div><div class="brand-sub">Protección personalizada y estrategia patrimonial</div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn btn-secondary" href="#calculadoras">Ver calculadoras</a>
+          <a class="btn btn-secondary" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20informaci%C3%B3n%20de%20seguros." target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>Protege tu salud, tu dinero y tu futuro con una estrategia bien diseñada.</h1>
+          <p class="lead">Especialista en <strong>Gastos Médicos Mayores</strong> y <strong>Retiro</strong>. También te ayudo con <strong>Vida Mujer</strong>, <strong>Seguro Educativo</strong>, vivienda, autos, mascotas y seguro de viajero.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20cotizar%20un%20seguro." target="_blank" rel="noreferrer">Cotizar por WhatsApp</a>
+            <a class="btn btn-secondary" href="tel:+528331407251">833 140 7251</a>
+          </div>
+          <div class="hero-points">
+            <div class="point"><span class="check">✓</span>Asesoría clara y personalizada</div>
+            <div class="point"><span class="check">✓</span>Comparación entre aseguradoras</div>
+            <div class="point"><span class="check">✓</span>Estrategia patrimonial aterrizada</div>
+            <div class="point"><span class="check">✓</span>Acompañamiento cercano</div>
+          </div>
+        </div>
+        <div class="card hero-card">
+          <div class="hero-photo"><div><strong>Espacio para tu foto principal</strong>Aquí podemos poner una foto tuya profesional cuando elijas cuál usar.</div></div>
+          <div class="hero-stats">
+            <div class="stat soft-orange"><small style="color:var(--orange)">Especialidad</small><strong style="color:var(--orange)">Gastos Médicos Mayores, Retiro, Vida Mujer y Seguro Educativo</strong></div>
+            <div class="stat soft-blue"><small style="color:var(--blue)">Coberturas extra</small><strong style="color:var(--blue)">Daños, autos, mascotas y Seguro de Viajero</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Soluciones</span><h2 class="title-xl">Protección diseñada para distintas prioridades</h2><p class="body-lg"></p></div>
+      <div class="grid services">
+        <div class="card service-card"><div class="icon">❤</div><h3>Gastos Médicos Mayores</h3><p>Protección médica privada para cuidar tu salud y tu patrimonio ante enfermedades o accidentes de alto costo.</p></div>
+        <div class="card service-card"><div class="icon">⏳</div><h3>Retiro y planeación patrimonial</h3><p>Estrategias para construir capital, aprovechar beneficios fiscales y llegar al retiro con mayor tranquilidad financiera.</p></div>
+        <div class="card service-card"><div class="icon">♀</div><h3>Plan Vida Mujer</h3><p>Protección especializada para la mujer, con respaldo económico y coberturas relevantes para distintas etapas de vida.</p></div>
+        <div class="card service-card"><div class="icon">🎓</div><h3>Seguro Educativo</h3><p>Planeación para asegurar la educación de tus hijos, con una estrategia financiera pensada para el largo plazo.</p></div>
+        <div class="card service-card"><div class="icon">⌂</div><h3>Daños para vivienda</h3><p>Coberturas para proteger tu casa, departamento o patrimonio inmobiliario frente a eventos imprevistos.</p></div>
+        <div class="card service-card"><div class="icon">🚗</div><h3>Seguro de auto</h3><p>Opciones para proteger tu vehículo, tu responsabilidad civil y tu estabilidad económica en carretera o ciudad.</p></div>
+        <div class="card service-card"><div class="icon">🐾</div><h3>Seguro para mascotas</h3><p>Respaldo para esos miembros de la familia que también merecen atención, prevención y apoyo financiero.</p><div style="margin-top:16px;"><button onclick="toggleMascotaForm()" style="background:var(--orange);color:white;border:none;padding:11px 16px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 10px 22px rgba(242,92,5,.18);">Cotizar mascota</button></div><div id="mascotaForm" style="display:none;margin-top:16px;padding:16px;border-radius:18px;background:linear-gradient(180deg,#fff,#f8fafc);border:1px solid rgba(7,59,99,.10);"><div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:12px;letter-spacing:.02em;">Datos para cotización</div><input id="petNombre" placeholder="Nombre" style="width:100%;margin-bottom:10px;padding:12px 14px;border-radius:12px;border:1px solid #d6dee8;background:white;"><input id="petEdad" placeholder="Edad (años)" style="width:100%;margin-bottom:10px;padding:12px 14px;border-radius:12px;border:1px solid #d6dee8;background:white;"><input id="petPeso" placeholder="Peso (kg)" style="width:100%;margin-bottom:10px;padding:12px 14px;border-radius:12px;border:1px solid #d6dee8;background:white;"><input id="petRaza" placeholder="Raza" style="width:100%;margin-bottom:10px;padding:12px 14px;border-radius:12px;border:1px solid #d6dee8;background:white;"><select id="petSexo" style="width:100%;margin-bottom:12px;padding:12px 14px;border-radius:12px;border:1px solid #d6dee8;background:white;"><option value="">Sexo</option><option value="Macho">Macho</option><option value="Hembra">Hembra</option></select><div id="petError" style="display:none;margin-bottom:12px;padding:10px 12px;border-radius:12px;background:rgba(242,92,5,.10);color:var(--orange);font-size:13px;font-weight:700;">Por favor completa todos los campos.</div><button onclick="enviarMascota()" style="width:100%;background:#073B63;color:white;border:none;padding:13px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 12px 22px rgba(7,59,99,.18);">Enviar por WhatsApp</button></div></div>
+        <div class="card service-card"><div class="icon">✈️</div><h3>Seguro de Viajero</h3><p>Protección para viajar con mayor tranquilidad ante imprevistos médicos, cancelaciones y eventualidades durante tu trayecto.</p></div>
+        <div class="card service-card"><div class="icon">🛡</div><h3>Protección integral</h3><p>Un análisis completo para ayudarte a elegir lo que realmente necesitas, sin sobreprotegerte ni quedarte corto.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="calculadoras" class="section soft">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Calculadoras</span><h2 class="title-xl">Una proyección más cercana a tu producto real</h2><p class="body-lg">Esta calculadora usa la lógica comercial de tus planes en UDIS para estimar aportación y valor futuro al retiro.</p></div>
+      <div class="calculator" style="margin-bottom:24px;">
+        <div class="calc-left dark">
+          <div class="overline" style="color:rgba(255,255,255,.7)">Calculadora de retiro en UDIS</div>
+          <h3 style="color:#fff;margin-top:10px;">Elige tu edad, sexo y plazo de pago</h3>
+          <p class="body-lg" style="color:rgba(255,255,255,.78)">La proyección considera el comportamiento real de los planes, inflación fija del 4% y conversión del fondo final con el valor proyectado de la UDI al momento del retiro.</p>
+          <label for="retiroEdad">Edad actual</label><input id="retiroEdad" type="number" value="32" min="18" max="60" />
+          <label for="retiroSexo">Sexo</label><select id="retiroSexo"><option value="M">Hombre</option><option value="F">Mujer</option></select>
+          <label for="retiroPlan">Plan</label><select id="retiroPlan"><option value="65">Pagar hasta los 65 años</option><option value="15">Pagar por 15 años</option><option value="10">Pagar por 10 años</option></select>
+          <div class="calc-note">La calculadora consulta la UDI oficial desde backend. Si el servicio no responde, usa un valor de respaldo de 8.80.</div>
+        </div>
+        <div class="calc-right">
+          <div class="stat-grid">
+            <div class="metric soft-orange"><small>Aportación mensual estimada</small><strong id="retiroMensual">$0</strong></div>
+            <div class="metric soft-blue"><small>Aportación total estimada</small><strong id="retiroTotal">$0</strong></div>
+            <div class="metric"><small>Valor proyectado</small><strong id="retiroUdis">0 UDIS</strong></div>
+            <div class="metric"><small>UDI usada hoy</small><strong id="udiHoyDisplay">$0.00</strong></div>
+          </div>
+          <div class="highlight"><small>Monto estimado al retiro</small><strong id="retiroPesos">$0</strong><div style="margin-top:10px;color:rgba(255,255,255,.84)">La aportación total en pesos se calcula año por año con la UDI proyectada de cada periodo. El monto al retiro convierte el fondo final en UDIS con la UDI estimada al año del retiro.</div></div>
+          <div class="box"><small>Plan seleccionado</small><strong id="retiroPlanLabel">Pago hasta los 65 años</strong><div style="margin-top:10px;color:var(--muted)">El resultado es ilustrativo y sirve como punto de partida para revisar tu caso real.</div></div>
+          <a class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Quiero revisar mi caso real</a>
+        </div>
+      </div>
+      <div class="calculator">
+        <div class="calc-right">
+          <div class="overline" style="color:var(--orange)">Calculadora fiscal</div>
+          <h3 style="margin-top:10px;">Descubre el posible beneficio fiscal</h3>
+          <p class="body-lg">Simula cuánto podrías deducir y cuál sería el costo real estimado de empezar un plan orientado al retiro este año.</p>
+          <label for="income">Ingresos brutos anuales</label><input id="income" type="number" value="600000" />
+          <label for="monthlyContribution">Aportación mensual</label><input id="monthlyContribution" type="number" value="4000" />
+          <div class="metric soft-orange" style="margin-top:18px"><small>Tope estimado deducible</small><strong id="legalCap" style="color:var(--text)">$0</strong></div>
+          <div class="calc-note" style="color:var(--muted);opacity:1">Estimación ilustrativa basada en topes fiscales generales. La estrategia final debe revisarse conforme a tu perfil y situación fiscal.</div>
+        </div>
+        <div class="calc-left dark">
+          <div class="stat-grid">
+            <div class="metric"><small>Inversión anual</small><strong id="annualContribution" style="color:var(--text)">$0</strong></div>
+            <div class="metric"><small>Deducción estimada</small><strong id="estimatedRefund" style="color:var(--text)">$0</strong><div style="margin-top:8px;color:#475569;font-size:12px;font-weight:600" id="estimatedRate">Tasa estimada usada: 0%</div></div>
+          </div>
+          <div class="highlight" style="background:linear-gradient(135deg,var(--orange),#FF7A1A);margin-top:18px"><small>Costo real estimado</small><strong id="realCost">$0</strong></div>
+          <a class="btn" style="width:100%;margin-top:18px;background:#fff;color:var(--text)" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20caso%20fiscal." target="_blank" rel="noreferrer">Quiero revisar mi caso con Hugo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:20px;"><span class="eyebrow">Aseguradoras</span></div>
+      <div class="grid logos">
+        <div class="card logo-card"><div class="logo-badge"><img src="Logo-mapfre-fondo-transparente.png" alt="MAPFRE"></div><h3>MAPFRE</h3><p>GMM, vida, autos y daños.</p></div>
+        <div class="card logo-card"><div class="logo-badge"><img src="logosm.png" alt="Seguros Monterrey"></div><h3>Seguros Monterrey</h3><p>Vida, GMM, Vida Mujer y educativo.</p></div>
+        <div class="card logo-card"><div class="logo-badge"><img src="Logo-seguros-Atlas-copia.webp" alt="Seguros Atlas"></div><h3>Seguros Atlas</h3><p>Vida, GMM, autos, hogar y educativo.</p></div>
+        <div class="card logo-card"><div class="logo-badge"><img src="QUALITAS-Seguros-3.png" alt="Quálitas"></div><h3>Quálitas</h3><p>Especialista en seguro automotriz.</p></div>
+        <div class="card logo-card"><div class="logo-badge"><img src="logosegurosana.png" alt="Seguros ANA"></div><h3>Seguros ANA</h3><p>Opciones para auto y protección patrimonial.</p></div>
+      </div>
+      <div class="section-head" style="margin-top:24px;margin-bottom:0"><p class="body-lg">No trabajo para una sola compañía. Trabajo para ayudarte a elegir bien.</p></div>
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container">
+      <div class="about">
+        <div class="card about-copy">
+          <span class="eyebrow">Sobre Hugo</span><h2 class="title-xl">Asesoría clara, cercana y bien aterrizada</h2>
+          <p class="body-lg">Mi enfoque es ayudarte a tomar decisiones inteligentes, sin presión y con una visión completa de tu patrimonio.</p>
+          <p class="body-lg">Me especializo en Gastos Médicos Mayores y Retiro, sin dejar de lado soluciones como Vida Mujer, Seguro Educativo, vivienda, autos, mascotas y seguro de viajero.</p>
+          <p class="body-lg">Mi prioridad no es vender por vender, sino ayudarte a entender qué te conviene y acompañarte a elegir una estrategia correcta.</p>
+        </div>
+        <div class="card about-photo"><div class="photo-placeholder"><div><strong>Espacio para tu segunda foto</strong>Aquí podemos poner una foto tuya profesional o una imagen más cercana contigo cuando elijas cuál usar.</div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="container" style="padding-bottom:88px;">
+    <div class="card close-card">
+      <div class="overline" style="color:rgba(255,255,255,.72)">Contacto</div>
+      <h2 class="title-xl" style="color:#fff;margin-top:12px">Hablemos de la estrategia que sí hace sentido para ti</h2>
+      <p>Puedes seguir comparando opciones o podemos revisar juntos qué tipo de protección y planeación te conviene más.</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:30px">
+        <a class="btn btn-primary" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20una%20asesor%C3%ADa%20personalizada." target="_blank" rel="noreferrer">Enviar WhatsApp</a>
+        <a class="btn btn-secondary" href="tel:+528331407251">Llamar ahora</a>
+      </div>
+    </div>
+  </section>
+  <footer>Seguro con Hugo · Asesoría personalizada en protección y planeación patrimonial</footer>
+  <a href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20informaci%C3%B3n%20de%20seguros." class="whatsapp-float" target="_blank" rel="noreferrer" aria-label="WhatsApp">💬</a>
+
+  <script>
+    function toggleMascotaForm(){
+      const form = document.getElementById("mascotaForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function enviarMascota(){
+      const nombre = document.getElementById("petNombre").value.trim();
+      const edad = document.getElementById("petEdad").value.trim();
+      const peso = document.getElementById("petPeso").value.trim();
+      const raza = document.getElementById("petRaza").value.trim();
+      const sexo = document.getElementById("petSexo").value.trim();
+      const error = document.getElementById("petError");
+
+      if(!nombre || !edad || !peso || !raza || !sexo){
+        error.style.display = "block";
+        return;
+      }
+
+      error.style.display = "none";
+
+      const mensaje = `Hola Hugo, quiero cotizar seguro para mi mascota:
+Nombre: ${nombre}
+Edad: ${edad}
+Peso: ${peso}
+Raza: ${raza}
+Sexo: ${sexo}`;
+
+      const url = "https://wa.me/528331407251?text=" + encodeURIComponent(mensaje);
+      window.open(url, "_blank");
+    }
+
+    const money = (value) => new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(Number.isFinite(value)?value:0);
+
+    const primasBase = {
+      22: { "65": 1556, "15": 3171, "10": 4192 },
+      32: { "65": 2262, "15": 3540, "10": 4706 },
+      42: { "65": 3687, "15": 4153, "10": 5544 }
+    };
+
+    const valoresFinales = {
+      M: {
+        22: { "65": 99195, "15": 81686, "10": 73026 },
+        32: { "65": 93389, "15": 73831, "10": 67205 },
+        42: { "65": 92266, "15": 68617, "10": 63922 }
+      },
+      F: {
+        22: { "65": 104356, "15": 84769, "10": 75903 },
+        32: { "65": 96949, "15": 74844, "10": 68627 },
+        42: { "65": 94771, "15": 69720, "10": 64824 }
+      }
+    };
+
+    const etiquetasPlan = {
+      "65": "Pago hasta los 65 años",
+      "15": "Pago por 15 años",
+      "10": "Pago por 10 años"
+    };
+
+    const BMX_TOKEN = "";
+    const UDI_FALLBACK = 8.80;
+    let udiHoyActual = UDI_FALLBACK;
+
+    function interpolar(edad, tabla, plan) {
+      const edades = [22, 32, 42];
+      if (edad <= 22) {
+        const v22 = tabla[22][plan];
+        const v32 = tabla[32][plan];
+        return v22 + ((edad - 22) / 10) * (v32 - v22);
+      }
+      if (edad >= 42) {
+        const v32 = tabla[32][plan];
+        const v42 = tabla[42][plan];
+        return v42 + ((edad - 42) / 10) * (v42 - v32);
+      }
+      if (edad <= 32) {
+        const v22 = tabla[22][plan];
+        const v32 = tabla[32][plan];
+        return v22 + ((edad - 22) / 10) * (v32 - v22);
+      }
+      const v32 = tabla[32][plan];
+      const v42 = tabla[42][plan];
+      return v32 + ((edad - 32) / 10) * (v42 - v32);
+    }
+
+    async function obtenerUDIHoy() {
+      try {
+        const response = await fetch('/api/udi', { cache: 'no-store' });
+        const data = await response.json();
+        const valor = Number(data?.udi);
+        if (Number.isFinite(valor) && valor > 0) {
+          udiHoyActual = valor;
+        } else {
+          udiHoyActual = UDI_FALLBACK;
+        }
+      } catch (error) {
+        udiHoyActual = UDI_FALLBACK;
+      }
+      document.getElementById('udiHoyDisplay').textContent = `$${udiHoyActual.toFixed(2)}`;
+    }
+
+    function updateRetirement() {
+      const edad = Number(document.getElementById('retiroEdad').value) || 0;
+      const sexo = document.getElementById('retiroSexo').value;
+      const plan = document.getElementById('retiroPlan').value;
+
+      if (!edad || edad < 18 || edad > 60) return;
+
+      const primaAnual = interpolar(edad, primasBase, plan);
+      const primaMensual = primaAnual / 12;
+      const udiFinal = interpolar(edad, valoresFinales[sexo], plan);
+
+      let añosPago = 0;
+      if (plan === "65") añosPago = Math.max(65 - edad, 0);
+      if (plan === "15") añosPago = 15;
+      if (plan === "10") añosPago = 10;
+
+      const aportacionTotalUDI = primaAnual * añosPago;
+      const añosRetiro = Math.max(65 - edad, 0);
+      const inflacion = 0.04;
+      const udiFutura = udiHoyActual * Math.pow(1 + inflacion, añosRetiro);
+
+      let aportacionTotalPesos = 0;
+      for (let i = 0; i < añosPago; i++) {
+        const udiEnEseAño = udiHoyActual * Math.pow(1 + inflacion, i);
+        aportacionTotalPesos += primaAnual * udiEnEseAño;
+      }
+
+      const valorPesos = udiFinal * udiFutura;
+
+      document.getElementById('retiroMensual').textContent = money(primaMensual * udiHoyActual);
+      document.getElementById('retiroTotal').textContent = money(aportacionTotalPesos);
+      document.getElementById('retiroUdis').textContent = `${Math.round(udiFinal).toLocaleString('es-MX')} UDIS`;
+      document.getElementById('retiroPesos').textContent = money(valorPesos);
+      document.getElementById('retiroPlanLabel').textContent = etiquetasPlan[plan];
+      document.getElementById('udiHoyDisplay').textContent = `$${udiHoyActual.toFixed(2)}`;
+    }
+
+    function updateFiscal(){
+      const income=Number(document.getElementById('income').value)||0;
+      const monthlyContribution=Number(document.getElementById('monthlyContribution').value)||0;
+      const annualContribution=monthlyContribution*12;
+      const legalCap=Math.min(income*0.1,206000);
+      const deductible=Math.min(annualContribution,legalCap);
+      const estimatedRate=income>1000000?0.30:income>500000?0.24:0.21;
+      const estimatedRefund=deductible*estimatedRate;
+      const realCost=annualContribution-estimatedRefund;
+      document.getElementById('legalCap').textContent=money(legalCap);
+      document.getElementById('annualContribution').textContent=money(annualContribution);
+      document.getElementById('estimatedRefund').textContent=money(estimatedRefund);
+      document.getElementById('estimatedRate').textContent='Tasa estimada usada: '+Math.round(estimatedRate*100)+'%';
+      document.getElementById('realCost').textContent=money(realCost);
+    }
+
+    ['retiroEdad','retiroSexo','retiroPlan'].forEach(id=>document.getElementById(id).addEventListener('input',updateRetirement));
+    ['income','monthlyContribution'].forEach(id=>document.getElementById(id).addEventListener('input',updateFiscal));
+
+    obtenerUDIHoy().then(updateRetirement);
+    updateFiscal();
+  </script>
+</body>
+</html>
