@@ -111,7 +111,7 @@
           <label for="retiroEdad">Edad actual</label><input id="retiroEdad" type="number" value="32" min="18" max="60" />
           <label for="retiroSexo">Sexo</label><select id="retiroSexo"><option value="M">Hombre</option><option value="F">Mujer</option></select>
           <label for="retiroPlan">Plan</label><select id="retiroPlan"><option value="65">Pagar hasta los 65 años</option><option value="15">Pagar por 15 años</option><option value="10">Pagar por 10 años</option></select>
-          <div class="calc-note">La calculadora intenta usar el valor oficial más reciente de la UDI si agregas tu token de Banxico. Mientras tanto usa un valor de respaldo editable en código.</div>
+          <div class="calc-note">La calculadora consulta la UDI oficial desde backend. Si el servicio no responde, usa un valor de respaldo de 8.80.</div>
         </div>
         <div class="calc-right">
           <div class="stat-grid">
@@ -121,8 +121,8 @@
             <div class="metric"><small>UDI usada hoy</small><strong id="udiHoyDisplay">$0.00</strong></div>
           </div>
           <div class="highlight"><small>Monto estimado al retiro</small><strong id="retiroPesos">$0</strong><div style="margin-top:10px;color:rgba(255,255,255,.84)">La aportación total en pesos se calcula año por año con la UDI proyectada de cada periodo. El monto al retiro convierte el fondo final en UDIS con la UDI estimada al año del retiro.</div></div>
-          <div class="box"><small>Plan seleccionado</small><strong id="retiroPlanLabel">Pago hasta los 65 años</strong><div style="margin-top:10px;color:var(--muted)">El resultado es ilustrativo y sirve como punto de partida para revisar tu caso real.</div></div>
-          <a class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Quiero revisar mi caso real</a>
+          <div class="box"><small>Lectura rápida de tu escenario</small><strong id="retiroPlanLabel">Pago hasta los 65 años</strong><div id="retiroResumen" style="margin-top:10px;color:var(--muted);line-height:1.7">Empezar antes suele ayudarte a construir una mejor proyección con una aportación más accesible.</div></div>
+          <a id="retiroWhatsapp" class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Quiero revisar mi caso real</a>
         </div>
       </div>
       <div class="calculator">
@@ -239,14 +239,20 @@ Sexo: ${sexo}`;
       }
     };
 
+    const calibracionPlan = {
+      "65": 1.00,
+      "15": 1.04,
+      "10": 1.025
+    };
+
     const etiquetasPlan = {
       "65": "Pago hasta los 65 años",
       "15": "Pago por 15 años",
       "10": "Pago por 10 años"
     };
 
-    const BMX_TOKEN = "e680a779ac758b4ca44fce68bb1ee3bcb1795fea40e0dae79682c9869f3c3dfd";
-    const UDI_FALLBACK = 8.00;
+    const BMX_TOKEN = "";
+    const UDI_FALLBACK = 8.80;
     let udiHoyActual = UDI_FALLBACK;
 
     function interpolar(edad, tabla, plan) {
@@ -272,17 +278,10 @@ Sexo: ${sexo}`;
     }
 
     async function obtenerUDIHoy() {
-      if (!BMX_TOKEN) {
-        udiHoyActual = UDI_FALLBACK;
-        document.getElementById('udiHoyDisplay').textContent = `$${udiHoyActual.toFixed(2)}`;
-        return;
-      }
       try {
-        const url = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP68257/datos/oportuno?token=${BMX_TOKEN}`;
-        const response = await fetch(url);
+        const response = await fetch('/api/udi', { cache: 'no-store' });
         const data = await response.json();
-        const dato = data?.bmx?.series?.[0]?.datos?.[0]?.dato;
-        const valor = Number(String(dato).replace(/,/g, ''));
+        const valor = Number(data?.udi);
         if (Number.isFinite(valor) && valor > 0) {
           udiHoyActual = valor;
         } else {
@@ -352,7 +351,6 @@ Sexo: ${sexo}`;
 
     obtenerUDIHoy().then(updateRetirement);
     updateFiscal();
-    <!-- update -->
   </script>
 </body>
 </html>
