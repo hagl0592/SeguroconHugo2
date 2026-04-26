@@ -22,7 +22,7 @@
     .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}.hero-points{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .point{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.88);padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:transform .22s ease, background .22s ease}.point:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}.check{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(242,92,5,.18);color:var(--orange);font-size:13px;font-weight:900}
     .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .24s ease, box-shadow .24s ease}.card:hover{transform:translateY(-4px);box-shadow:0 26px 48px rgba(15,23,42,.14)}.hero-card{padding:26px;background:rgba(255,255,255,.97)}
-    .hero-photo{border-radius:28px;background:linear-gradient(135deg, rgba(7,59,99,.08), rgba(242,92,5,.08));border:1px solid rgba(7,59,99,.08);min-height:280px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);padding:24px}.hero-photo-card{background:rgba(255,255,255,.96)}.hero-photo-real{min-height:560px;align-items:stretch;padding:0;overflow:hidden;background:radial-gradient(circle at top right, rgba(242,92,5,.16), transparent 28%), linear-gradient(145deg, rgba(7,59,99,.05), rgba(242,92,5,.08))}.hero-photo-content{display:flex;flex-direction:column;justify-content:space-between;width:100%;padding:26px}.photo-badge{align-self:flex-start;display:inline-flex;padding:9px 14px;border-radius:999px;background:rgba(7,59,99,.08);color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.photo-frame{flex:1;display:flex;align-items:center;justify-content:center;padding:18px 0}.photo-placeholder-hero{width:100%;min-height:380px;border-radius:26px;border:1px dashed rgba(7,59,99,.18);background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(248,250,252,.95));display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:34px;color:var(--muted)}.photo-placeholder-hero strong{display:block;color:var(--blue);font-size:28px;font-family:var(--display);margin-bottom:12px;line-height:1.1}.photo-placeholder-hero span{max-width:420px;line-height:1.8;font-size:16px}.hero-photo-note{padding:18px 20px;border-radius:22px;background:#fff;border:1px solid rgba(7,59,99,.08);text-align:left}.hero-photo-note strong{display:block;color:var(--blue);font-size:20px;line-height:1.25;font-family:var(--display)}.hero-photo-note span{display:block;margin-top:6px;color:var(--muted);line-height:1.6}
+    .hero-photo{border-radius:28px;background:linear-gradient(135deg, rgba(7,59,99,.08), rgba(242,92,5,.08));border:1px solid rgba(7,59,99,.08);min-height:280px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);padding:24px}.hero-photo-card{background:rgba(255,255,255,.96)}.hero-photo-real{min-height:560px;align-items:stretch;padding:0;overflow:hidden;background:radial-gradient(circle at top right, rgba(242,92,5,.16), transparent 28%), linear-gradient(145deg, rgba(7,59,99,.05), rgba(242,92,5,.08))}.hero-photo-content{display:flex;flex-direction:column;justify-content:space-between;width:100%;padding:26px}.photo-badge{align-self:flex-start;display:inline-flex;padding:9px 14px;border-radius:999px;background:rgba(7,59,99,.08);color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.brand-h-badge{width:44px;height:44px;border-radius:16px;padding:0;align-items:center;justify-content:center;background:rgba(242,92,5,.12);color:var(--orange);font-family:var(--display);font-size:34px;font-weight:900;line-height:1;text-transform:none;letter-spacing:0}.photo-frame{flex:1;display:flex;align-items:center;justify-content:center;padding:18px 0}.photo-placeholder-hero{width:100%;min-height:380px;border-radius:26px;border:1px dashed rgba(7,59,99,.18);background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(248,250,252,.95));display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:34px;color:var(--muted)}.photo-placeholder-hero strong{display:block;color:var(--blue);font-size:28px;font-family:var(--display);margin-bottom:12px;line-height:1.1}.photo-placeholder-hero span{max-width:420px;line-height:1.8;font-size:16px}.hero-photo-note{padding:18px 20px;border-radius:22px;background:#fff;border:1px solid rgba(7,59,99,.08);text-align:left}.hero-photo-note strong{display:block;color:var(--blue);font-size:20px;line-height:1.25;font-family:var(--display)}.hero-photo-note span{display:block;margin-top:6px;color:var(--muted);line-height:1.6}
     .hero-photo strong{display:block;color:var(--blue);font-size:22px;margin-bottom:8px}.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
     .stat{padding:20px;border-radius:24px;border:1px solid var(--border);background:#fff;transition:transform .2s ease, box-shadow .2s ease}.stat:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(15,23,42,.08)}
     .stat.soft-orange{background:linear-gradient(180deg, rgba(242,92,5,.10), rgba(242,92,5,.14));border-color:transparent}.stat.soft-blue{background:linear-gradient(180deg, rgba(7,59,99,.08), rgba(7,59,99,.12));border-color:transparent}
@@ -64,6 +64,17 @@
   transform:translateY(-2px) scale(1.05);
   box-shadow:0 18px 34px rgba(0,0,0,.28);
 }
+
+.calc-capture{margin-top:18px;padding:22px;border-radius:26px;background:linear-gradient(180deg,#fff,#f8fafc);border:1px solid rgba(7,59,99,.08)}
+.calc-capture h4{margin:0;font-family:var(--display);font-size:28px;color:var(--blue);line-height:1.1}
+.calc-capture p{margin:10px 0 0;color:var(--muted);line-height:1.65}
+.calc-lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.calc-lead-grid input{height:50px;border-radius:14px;border:1px solid var(--border);padding:0 14px;font-size:15px;background:#fff}
+.calc-capture-error{display:none;margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(242,92,5,.10);color:var(--orange);font-size:13px;font-weight:700}
+.calc-trust{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.6}
+@media (max-width:720px){.calc-lead-grid{grid-template-columns:1fr}}
+
+.cta-after-engineer .btn,.cta-before-calculators .btn{box-shadow:0 16px 30px rgba(242,92,5,.18)}
 </style>
 </head>
 <body>
@@ -102,7 +113,7 @@
 <div class="card hero-card hero-photo-card fade-up fade-delay-2">
   <div class="hero-photo hero-photo-real">
     <div class="hero-photo-content">
-      <span class="photo-badge">h</span>
+      <span class="photo-badge brand-h-badge">h</span>
       <div class="photo-frame">
         <div class="photo-placeholder-hero">
           <strong>Espacio para tu foto profesional</strong>
@@ -203,7 +214,10 @@
     </div>
   </section>
 
-  <div style="text-align:center;margin:30px 0;"><button class="btn btn-primary" onclick="openGmmModal()">Quiero protegerme hoy</button></div>
+
+  <div class="container cta-after-engineer" style="text-align:center;margin:-28px auto 48px;">
+    <button class="btn btn-primary" type="button" onclick="openGmmModal()">Quiero protegerme hoy</button>
+  </div>
 
   <section class="transition-band">
     <div class="container">
@@ -219,14 +233,18 @@
       </div>
     </div>
   </section>
-<div style="text-align:center;margin:40px 0;"><p style="font-weight:600;margin-bottom:10px">Antes de construir tu retiro… asegúrate de proteger lo que podría perderse en días.</p><button class="btn btn-primary" onclick="openGmmModal()">Protegerme primero</button></div>
+
+  <div class="container cta-before-calculators" style="text-align:center;margin:46px auto 0;">
+    <p style="font-weight:700;margin:0 0 12px;color:var(--blue);font-size:18px;line-height:1.6;">Antes de construir tu retiro… asegúrate de proteger lo que podría perderse en días.</p>
+    <button class="btn btn-primary" type="button" onclick="openGmmModal()">Protegerme primero</button>
+  </div>
 
 <section id="calculadoras" class="section soft">
     <div class="container">
-      <div class="section-head"><span class="eyebrow">Calculadoras</span><h2 class="title-xl">Simula tu escenario y toma una mejor decisión</h2><p class="body-lg">Primero entiende tus números. Después aterrizamos juntos la estrategia correcta.</p></div>
+      <div class="section-head"><span class="eyebrow">Calculadoras</span><h2 class="title-xl">Simula tu escenario y toma una mejor decisión</h2><p class="body-lg">Primero entiende tus números. Después aterrizamos juntos la estrategia correcta.</p><div class="retirement-inline-cta" style="margin-top:20px;"><a class="btn btn-primary" href="#calculadoras">Simular mi plan de retiro</a></div></div>
       <div class="calculator" style="margin-bottom:24px;">
         <div class="calc-left dark">
-          <div class="overline" style="color:rgba(255,255,255,.7)">Calculadora de retiro</h2><div style="margin-top:14px"><button class="btn btn-secondary">Simular mi plan de retiro</button></div> en UDIS</div>
+          <div class="overline" style="color:rgba(255,255,255,.7)">Calculadora de retiro en UDIS</div>
           <h3 style="color:#fff;margin-top:10px;">Elige tu edad, sexo y plazo de pago</h3>
           <p class="body-lg" style="color:rgba(255,255,255,.78)">Ingresa tus datos y descubre una estimación clara de tu plan de retiro. Después te ayudo a aterrizarlo a una propuesta personalizada.</p>
           <label for="retiroEdad">Edad actual</label><input id="retiroEdad" type="number" value="32" min="18" max="60" />
@@ -236,14 +254,27 @@
         </div>
         <div class="calc-right">
           <div class="stat-grid">
-            <div class="metric soft-orange"><small>Aportación mensual estimada</small><strong id="retiroMensual">$0</strong></div>
+            <div class="metric soft-orange"><small>Aportación mensual mínima estimada</small><strong id="retiroMensual">$0</strong></div>
             <div class="metric soft-blue"><small>Aportación total estimada</small><strong id="retiroTotal">$0</strong></div>
             <div class="metric"><small>Valor proyectado</small><strong id="retiroUdis">0 UDIS</strong></div>
             <div class="metric"><small>UDI usada hoy</small><strong id="udiHoyDisplay">$0.00</strong></div>
           </div>
           <div class="highlight"><small>Monto estimado al retiro</small><strong id="retiroPesos">$0</strong><div style="margin-top:10px;color:rgba(255,255,255,.84)">Este es un escenario estimado de lo que podrías construir si empiezas hoy.</div></div>
           <div class="box"><small>Lectura rápida de tu escenario</small><strong id="retiroPlanLabel">Pago hasta los 65 años</strong><div id="retiroResumen" style="margin-top:10px;color:var(--muted);line-height:1.7">Empezar antes suele ayudarte a construir una mejor proyección con una aportación más accesible.</div></div>
-          <a id="retiroWhatsapp" class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Quiero mi plan personalizado</a>
+          
+          <div class="calc-capture">
+            <h4>Este es solo el punto de partida.</h4>
+            <p>Tu estrategia real puede cambiar según tu perfil, ingresos, objetivos y aseguradora. Si quieres ver el escenario completo aplicado a tu caso, mándame tus datos y lo aterrizamos por WhatsApp.</p>
+            <div class="calc-lead-grid">
+              <input id="calcNombre" placeholder="Nombre completo">
+              <input id="calcWhatsapp" placeholder="WhatsApp">
+            </div>
+            <div id="calcError" class="calc-capture-error">Completa tu nombre y WhatsApp para enviarme tu escenario.</div>
+            <button onclick="enviarCalculadoraRetiro()" class="btn btn-primary" style="width:100%;margin-top:14px;">Quiero ver mi estrategia completa</button>
+            <div class="calc-trust">Sin spam. Te contacto directo por WhatsApp para explicarte el resultado en lenguaje claro.</div>
+          </div>
+
+          <a id="retiroWhatsapp" class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Hablar de mi resultado por WhatsApp</a>
         </div>
       </div>
       <div class="calculator">
@@ -445,6 +476,43 @@
   <footer>Seguro con Hugo · Asesoría personalizada en protección y planeación patrimonial</footer>
 
   <script>
+
+    function enviarCalculadoraRetiro(){
+      const nombre = document.getElementById("calcNombre")?.value.trim();
+      const whatsapp = document.getElementById("calcWhatsapp")?.value.trim();
+      const error = document.getElementById("calcError");
+
+      if(!nombre || !whatsapp){
+        if(error) error.style.display = "block";
+        return;
+      }
+
+      if(error) error.style.display = "none";
+
+      const edad = document.getElementById("retiroEdad")?.value || "";
+      const sexo = document.getElementById("retiroSexo")?.value || "";
+      const plan = document.getElementById("retiroPlanLabel")?.textContent || "";
+      const mensual = document.getElementById("retiroMensual")?.textContent || "";
+      const total = document.getElementById("retiroTotal")?.textContent || "";
+      const finalPesos = document.getElementById("retiroPesos")?.textContent || "";
+      const finalUdis = document.getElementById("retiroUdis")?.textContent || "";
+
+      const mensaje = `Hola Hugo, ya usé tu calculadora de retiro y quiero ver mi estrategia completa aplicada a mi caso.
+
+Nombre: ${nombre}
+WhatsApp: ${whatsapp}
+Edad: ${edad}
+Sexo: ${sexo}
+Plan elegido: ${plan}
+Aportación mensual mínima estimada: ${mensual}
+Aportación total estimada: ${total}
+Valor proyectado: ${finalUdis}
+Monto estimado al retiro: ${finalPesos}`;
+
+      window.open("https://wa.me/528331407251?text=" + encodeURIComponent(mensaje), "_blank");
+    }
+
+
 
     function openGmmModal(){
       const modal = document.getElementById("gmmModal");
