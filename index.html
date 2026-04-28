@@ -75,6 +75,24 @@
 @media (max-width:720px){.calc-lead-grid{grid-template-columns:1fr}}
 
 .cta-after-engineer .btn,.cta-before-calculators .btn{box-shadow:0 16px 30px rgba(242,92,5,.18)}
+
+.result-lock-card{margin-top:14px;border-radius:28px;padding:26px;background:linear-gradient(135deg,rgba(7,59,99,.06),rgba(242,92,5,.08));border:1px solid rgba(7,59,99,.10);text-align:center}
+.result-lock-card h4{margin:0;font-family:var(--display);font-size:32px;color:var(--blue);line-height:1.08}
+.result-lock-card p{margin:10px auto 0;color:var(--muted);line-height:1.7;max-width:520px}
+.locked-result{position:relative;overflow:hidden}
+.locked-result .locked-value{filter:blur(9px);user-select:none;opacity:.72}
+.locked-result:after{content:"Resultado listo";position:absolute;inset:auto 20px 20px 20px;display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:16px;background:rgba(7,59,99,.92);color:#fff;font-weight:800;box-shadow:0 16px 30px rgba(15,23,42,.18)}
+.unlock-form{margin-top:18px;display:grid;gap:12px}
+.unlock-form input{height:50px;border-radius:14px;border:1px solid var(--border);padding:0 14px;font-size:15px;background:#fff}
+.unlock-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.unlock-error{display:none;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(242,92,5,.10);color:var(--orange);font-size:13px;font-weight:700}
+.unlocked-note{display:none;margin-top:14px;padding:14px 16px;border-radius:18px;background:rgba(7,59,99,.06);color:var(--blue);font-weight:700;line-height:1.5}
+body.result-unlocked .locked-result .locked-value{filter:none;user-select:auto;opacity:1}
+body.result-unlocked .locked-result:after{display:none}
+body.result-unlocked #resultadoBloqueado{display:none}
+body.result-unlocked #resultadoDesbloqueadoNote{display:block}
+@media (max-width:720px){.unlock-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -259,22 +277,31 @@
             <div class="metric"><small>Valor proyectado</small><strong id="retiroUdis">0 UDIS</strong></div>
             <div class="metric"><small>UDI usada hoy</small><strong id="udiHoyDisplay">$0.00</strong></div>
           </div>
-          <div class="highlight"><small>Monto estimado al retiro</small><strong id="retiroPesos">$0</strong><div style="margin-top:10px;color:rgba(255,255,255,.84)">Este es un escenario estimado de lo que podrías construir si empiezas hoy.</div></div>
-          <div class="box"><small>Lectura rápida de tu escenario</small><strong id="retiroPlanLabel">Pago hasta los 65 años</strong><div id="retiroResumen" style="margin-top:10px;color:var(--muted);line-height:1.7">Empezar antes suele ayudarte a construir una mejor proyección con una aportación más accesible.</div></div>
-          
-          <div class="calc-capture">
-            <h4>Este es solo el punto de partida.</h4>
-            <p>Tu estrategia real puede cambiar según tu perfil, ingresos, objetivos y aseguradora. Si quieres ver el escenario completo aplicado a tu caso, mándame tus datos y lo aterrizamos por WhatsApp.</p>
-            <div class="calc-lead-grid">
-              <input id="calcNombre" placeholder="Nombre completo">
-              <input id="calcWhatsapp" placeholder="WhatsApp">
-            </div>
-            <div id="calcError" class="calc-capture-error">Completa tu nombre y WhatsApp para enviarme tu escenario.</div>
-            <button onclick="enviarCalculadoraRetiro()" class="btn btn-primary" style="width:100%;margin-top:14px;">Quiero ver mi estrategia completa</button>
-            <div class="calc-trust">Sin spam. Te contacto directo por WhatsApp para explicarte el resultado en lenguaje claro.</div>
+          <div class="highlight locked-result" id="retiroResultadoPrincipal">
+            <small>Monto estimado al retiro</small>
+            <strong id="retiroPesos" class="locked-value">$0</strong>
+            <div style="margin-top:10px;color:rgba(255,255,255,.84)">Este es un escenario estimado de lo que podrías construir si empiezas hoy.</div>
           </div>
+          <div class="box"><small>Lectura rápida de tu escenario</small><strong id="retiroPlanLabel">Pago hasta los 65 años</strong><div id="retiroResumen" style="margin-top:10px;color:var(--muted);line-height:1.7">Empezar antes suele ayudarte a construir una mejor proyección con una aportación más accesible.</div></div>
 
-          <a id="retiroWhatsapp" class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Hablar de mi resultado por WhatsApp</a>
+          
+          <div id="resultadoBloqueado" class="result-lock-card">
+            <h4>Tu resultado completo ya está listo.</h4>
+            <p>Para desbloquear el monto estimado al retiro y enviarte una lectura clara por WhatsApp, déjame tus datos. Así no solo ves un número: sabes qué significa para tu caso.</p>
+            <div class="unlock-form">
+              <div class="unlock-grid">
+                <input id="calcNombre" placeholder="Nombre completo">
+                <input id="calcWhatsapp" placeholder="WhatsApp">
+              </div>
+              <input id="calcNacimiento" type="date" placeholder="Fecha de nacimiento">
+              <div id="calcError" class="unlock-error">Completa nombre, WhatsApp y fecha de nacimiento para desbloquear tu resultado.</div>
+              <button onclick="desbloquearResultadoRetiro()" class="btn btn-primary" style="width:100%;margin-top:2px;">Ver mi resultado completo</button>
+            </div>
+            <div class="calc-trust">No spam. Te contacto directo por WhatsApp para explicarte el resultado y aterrizar opciones reales.</div>
+          </div>
+          <div id="resultadoDesbloqueadoNote" class="unlocked-note">Resultado desbloqueado. Ahora puedes ver tu monto estimado y enviarme tu escenario para revisarlo contigo.</div>
+
+          <a id="retiroWhatsapp" class="btn btn-primary" style="margin-top:18px" href="https://wa.me/528331407251?text=Hola%20Hugo%2C%20quiero%20revisar%20mi%20proyecci%C3%B3n%20de%20retiro." target="_blank" rel="noreferrer">Enviar mi escenario a Hugo</a>
         </div>
       </div>
       <div class="calculator">
@@ -477,17 +504,23 @@
 
   <script>
 
-    function enviarCalculadoraRetiro(){
+    function desbloquearResultadoRetiro(){
       const nombre = document.getElementById("calcNombre")?.value.trim();
       const whatsapp = document.getElementById("calcWhatsapp")?.value.trim();
+      const nacimiento = document.getElementById("calcNacimiento")?.value.trim();
       const error = document.getElementById("calcError");
 
-      if(!nombre || !whatsapp){
+      if(!nombre || !whatsapp || !nacimiento){
         if(error) error.style.display = "block";
         return;
       }
 
       if(error) error.style.display = "none";
+      document.body.classList.add("result-unlocked");
+      localStorage.setItem("retiroResultadoDesbloqueado", "1");
+      localStorage.setItem("retiroLeadNombre", nombre);
+      localStorage.setItem("retiroLeadWhatsapp", whatsapp);
+      localStorage.setItem("retiroLeadNacimiento", nacimiento);
 
       const edad = document.getElementById("retiroEdad")?.value || "";
       const sexo = document.getElementById("retiroSexo")?.value || "";
@@ -496,12 +529,55 @@
       const total = document.getElementById("retiroTotal")?.textContent || "";
       const finalPesos = document.getElementById("retiroPesos")?.textContent || "";
       const finalUdis = document.getElementById("retiroUdis")?.textContent || "";
+      const udi = document.getElementById("udiHoyDisplay")?.textContent || "";
 
-      const mensaje = `Hola Hugo, ya usé tu calculadora de retiro y quiero ver mi estrategia completa aplicada a mi caso.
+      const mensaje = `Hola Hugo, ya usé tu calculadora de retiro y desbloqueé mi resultado.
 
 Nombre: ${nombre}
 WhatsApp: ${whatsapp}
-Edad: ${edad}
+Fecha de nacimiento: ${nacimiento}
+Edad capturada en calculadora: ${edad}
+Sexo: ${sexo}
+Plan elegido: ${plan}
+Aportación mensual mínima estimada: ${mensual}
+Aportación total estimada: ${total}
+Valor proyectado: ${finalUdis}
+Monto estimado al retiro: ${finalPesos}
+UDI usada: ${udi}
+
+Quiero que me expliques mi estrategia completa aplicada a mi caso.`;
+
+      window.open("https://wa.me/528331407251?text=" + encodeURIComponent(mensaje), "_blank");
+      actualizarWhatsappRetiro();
+    }
+
+    function restaurarDesbloqueoRetiro(){
+      if(localStorage.getItem("retiroResultadoDesbloqueado") === "1"){
+        document.body.classList.add("result-unlocked");
+      }
+    }
+
+    function actualizarWhatsappRetiro(){
+      const retiroWhatsapp = document.getElementById('retiroWhatsapp');
+      if (!retiroWhatsapp) return;
+
+      const nombreLead = localStorage.getItem("retiroLeadNombre") || "";
+      const whatsappLead = localStorage.getItem("retiroLeadWhatsapp") || "";
+      const nacimientoLead = localStorage.getItem("retiroLeadNacimiento") || "";
+      const edad = document.getElementById("retiroEdad")?.value || "";
+      const sexo = document.getElementById("retiroSexo")?.value || "";
+      const plan = document.getElementById("retiroPlanLabel")?.textContent || "";
+      const mensual = document.getElementById("retiroMensual")?.textContent || "";
+      const total = document.getElementById("retiroTotal")?.textContent || "";
+      const finalPesos = document.getElementById("retiroPesos")?.textContent || "";
+      const finalUdis = document.getElementById("retiroUdis")?.textContent || "";
+
+      const mensaje = `Hola Hugo, quiero revisar mi escenario de retiro.
+
+Nombre: ${nombreLead}
+WhatsApp: ${whatsappLead}
+Fecha de nacimiento: ${nacimientoLead}
+Edad capturada en calculadora: ${edad}
 Sexo: ${sexo}
 Plan elegido: ${plan}
 Aportación mensual mínima estimada: ${mensual}
@@ -509,8 +585,10 @@ Aportación total estimada: ${total}
 Valor proyectado: ${finalUdis}
 Monto estimado al retiro: ${finalPesos}`;
 
-      window.open("https://wa.me/528331407251?text=" + encodeURIComponent(mensaje), "_blank");
+      retiroWhatsapp.href = "https://wa.me/528331407251?text=" + encodeURIComponent(mensaje);
     }
+
+
 
 
 
@@ -683,6 +761,7 @@ Sexo: ${sexo}`;
         udiHoyActual = UDI_FALLBACK;
       }
       document.getElementById('udiHoyDisplay').textContent = `$${udiHoyActual.toFixed(2)}`;
+      actualizarWhatsappRetiro();
     }
 
     function updateRetirement() {
@@ -743,6 +822,8 @@ Sexo: ${sexo}`;
 
     obtenerUDIHoy().then(updateRetirement);
     updateFiscal();
+    restaurarDesbloqueoRetiro();
+    actualizarWhatsappRetiro();
   </script>
 
   <a id="floatingWhatsapp"
